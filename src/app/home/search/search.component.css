@@ -1,0 +1,15 @@
+.container {
+  position: relative;
+  width: 80%;
+  border: 2px solid black;
+  border-radius: 4px;
+  margin: 20px auto;
+  padding: 20px;
+  box-shadow: 2px 2px 2px gray;
+}
+label {
+  display: block;
+}
+label, input, button {
+  margin: 4px;
+}

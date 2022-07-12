@@ -1,4 +1,4 @@
-import {Injectable} from '@angular/core';
+import {EventEmitter, Injectable} from '@angular/core';
 
 @Injectable({
   providedIn: 'root'
@@ -6,6 +6,7 @@ import {Injectable} from '@angular/core';
 export class StorageService {
 
   key = 'symbols-list';
+  symbolsListChanged = new EventEmitter<string[]>();
 
   constructor() {
   }
@@ -26,20 +27,20 @@ export class StorageService {
     }
   }
 
-  addSymbol(symbol: string): string[] {
+  addSymbol(symbol: string) {
     const list = this.getSymbolsList();
     list.push(symbol);
     this.setSymbolsList(list);
-    return list;
+    this.symbolsListChanged.emit(list);
   }
 
-  removeSymbol(symbol: string): string[] {
+  removeSymbol(symbol: string) {
     const list = this.getSymbolsList();
     const index = list.indexOf(symbol, 0);
     if (index > -1) {
       list.splice(index, 1);
     }
     this.setSymbolsList(list);
-    return list;
+    this.symbolsListChanged.emit(list);
   }
 }

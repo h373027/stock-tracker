@@ -1,20 +1,28 @@
 import {NgModule} from '@angular/core';
+import {FormsModule} from '@angular/forms';
 import {BrowserModule} from '@angular/platform-browser';
 
 import {AppComponent} from './app.component';
-import {HomeComponent} from './home/home.component';
-import {SentimentComponent} from './sentiment/sentiment.component';
 import {AppRoutingModule} from './app-routing.module';
+import {HomeComponent} from './home/home.component';
+import {SearchComponent} from './home/search/search.component';
+import {StockDetailsComponent} from './home/stock-details/stock-details.component';
+import {SentimentComponent} from './sentiment/sentiment.component';
+import { StocksListComponent } from './home/stocks-list/stocks-list.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
-    SentimentComponent
+    SearchComponent,
+    StockDetailsComponent,
+    SentimentComponent,
+    StocksListComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

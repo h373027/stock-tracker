@@ -1,0 +1,7 @@
+<div class="container">
+  <form #searchForm="ngForm" (ngSubmit)="onSubmit(searchForm.form.value)">
+    <label>Enter the symbol of a stock to track (i.e. AAPL, TSLA, GOOGL)</label>
+    <input type="text" minlength="1" maxlength="5" style="text-transform:uppercase" ngModel name="symbol" />
+    <button type="submit">Track Stock</button>
+  </form>
+</div>
