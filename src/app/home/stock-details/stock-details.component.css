@@ -8,14 +8,26 @@
   box-shadow: 2px 2px 2px gray;
 }
 
-.title {
-  display: inline;
+.header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+h3 {
+  margin-block-start: 0;
 }
 
 .remove-button {
   cursor: pointer;
   padding: 4px;
-  position: absolute;
-  top: 16px;
-  right: 16px;
 }
+
+.quote-data {
+  display:grid;
+  grid-template-columns: 200px 200px;
+  grid-column-gap: 20px;
+  grid-row-gap: 20px;
+}
+
+

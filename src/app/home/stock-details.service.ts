@@ -1,8 +1,8 @@
 import {HttpClient, HttpParams} from '@angular/common/http';
 import {Injectable} from '@angular/core';
-import {Observable} from 'rxjs';
+import {map, Observable} from 'rxjs';
 
-import {StockDetails} from './stock-details';
+import {QuoteData} from './quote-data';
 
 interface SymbolLookupResponse {
   // Number of results
@@ -27,6 +27,8 @@ interface QuoteResponse {
   c: number,
   // Change
   d: number,
+  // Percent change
+  dp: number,
   // High price of the day
   h: number,
   // Low price of the day
@@ -51,8 +53,12 @@ export class StockDetailsService {
   constructor(private http: HttpClient) {
   }
 
-  getStockDetails(symbol: string): Observable<StockDetails> {
-    return this.http.get<StockDetails>('');
+  private getCompanyData(symbol: string): Observable<SymbolLookupResponse> {
+    const url = this.baseUrl + 'search';
+    const params = new HttpParams()
+      .set('q', symbol)
+      .set('token', this.apiKey);
+    return this.http.get<SymbolLookupResponse>(url, {params});
   }
 
   private getQuoteData(symbol: string): Observable<QuoteResponse> {
@@ -60,14 +66,26 @@ export class StockDetailsService {
     const params = new HttpParams()
       .set('symbol', symbol)
       .set('token', this.apiKey);
-    return this.http.get<QuoteResponse>(url, {params}).pipe();
+    return this.http.get<QuoteResponse>(url, {params});
   }
 
-  private getCompanyName(symbol: string): Observable<SymbolLookupResponse> {
-    const url = this.baseUrl + 'search';
-    const params = new HttpParams()
-      .set('q', symbol)
-      .set('token', this.apiKey);
-    return this.http.get<SymbolLookupResponse>('').pipe();
+  convertQuoteData(symbol: string, response: QuoteResponse): QuoteData {
+    return {
+      symbol: symbol,
+      currentPrice: response.c,
+      percentChange: response.dp,
+      openingPriceOfTheDay: response.o,
+      highPriceOfTheDay: response.h
+    } as QuoteData;
+  }
+
+  getCompanyName(symbol: string): Observable<string> {
+    return this.getCompanyData(symbol)
+      .pipe(map(companyData => companyData.result[0]?.description));
+  }
+
+  getQuoteDataModel(symbol: string): Observable<QuoteData> {
+    return this.getQuoteData(symbol)
+      .pipe(map(quoteData => this.convertQuoteData(symbol, quoteData)));
   }
 }

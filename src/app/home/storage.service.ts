@@ -28,13 +28,19 @@ export class StorageService {
   }
 
   addSymbol(symbol: string) {
+    if (!symbol) {
+      return;
+    }
     const list = this.getSymbolsList();
-    list.push(symbol);
+    list.push(symbol.toUpperCase());
     this.setSymbolsList(list);
     this.symbolsListChanged.emit(list);
   }
 
   removeSymbol(symbol: string) {
+    if (!symbol) {
+      return;
+    }
     const list = this.getSymbolsList();
     const index = list.indexOf(symbol, 0);
     if (index > -1) {

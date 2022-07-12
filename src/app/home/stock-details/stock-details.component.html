@@ -1,4 +1,13 @@
 <div class="container">
-  <h3 class="title" [innerText]="symbol"></h3>
-  <span class="remove-button" (click)="onRemove()">X</span>
+  <div class="header">
+    <h3 class="title">{{companyName}} ({{symbol}})</h3>
+    <span class="remove-button" (click)="onRemove()">X</span>
+  </div>
+
+  <div class="quote-data" *ngIf="quoteData">
+    <div>Current price: {{quoteData.currentPrice}}</div>
+    <div>Change today: {{quoteData.percentChange / 100 | percent: '1.0-2'}}</div>
+    <div>Opening price: {{quoteData.openingPriceOfTheDay}}</div>
+    <div>High price: {{quoteData.highPriceOfTheDay}}</div>
+  </div>
 </div>
