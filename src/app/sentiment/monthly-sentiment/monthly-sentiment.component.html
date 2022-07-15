@@ -1,0 +1,8 @@
+<div class="container" *ngIf="monthlySentimentData">
+  <div>
+    <div [innerText]="monthlySentimentData.month | uppercase"></div>
+    <div>Change: {{monthlySentimentData.change}}</div>
+    <div>MSPR: {{monthlySentimentData.mspr | number: '1.0-2'}}</div>
+  </div>
+  <app-arrow [value]="monthlySentimentData.change"></app-arrow>
+</div>

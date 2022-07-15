@@ -1,13 +1,18 @@
 <div class="container">
   <div class="header">
     <h3 class="title">{{companyName}} ({{symbol}})</h3>
-    <span class="remove-button" (click)="onRemove()">X</span>
+    <span class="remove" (click)="onRemove()">X</span>
   </div>
-
-  <div class="quote-data" *ngIf="quoteData">
-    <div>Current price: {{quoteData.currentPrice}}</div>
-    <div>Change today: {{quoteData.percentChange / 100 | percent: '1.0-2'}}</div>
-    <div>Opening price: {{quoteData.openingPriceOfTheDay}}</div>
-    <div>High price: {{quoteData.highPriceOfTheDay}}</div>
+  <div class="content" *ngIf="quoteData">
+    <div class="numbers">
+      <div>Current price: {{quoteData.currentPrice}}</div>
+      <div>Change today: {{quoteData.percentChange / 100 | percent: '1.0-2'}}</div>
+      <div>Opening price: {{quoteData.openingPriceOfTheDay | number: '1.0-2'}}</div>
+      <div>High price: {{quoteData.highPriceOfTheDay | number: '1.0-2'}}</div>
+    </div>
+    <app-arrow [value]="quoteData.percentChange"></app-arrow>
+  </div>
+  <div class="footer">
+    <button (click)="goToSentiment()">Go to social sentiment details ></button>
   </div>
 </div>

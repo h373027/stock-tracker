@@ -1,9 +1,10 @@
 import {Component, Input, OnInit} from '@angular/core';
+import {Router} from '@angular/router';
 import {first} from 'rxjs';
 
-import {QuoteData} from '../quote-data';
-import {StockDetailsService} from '../stock-details.service';
-import {StorageService} from '../storage.service';
+import {QuoteData} from '../../quote-data';
+import {StockDetailsService} from '../../stock-details.service';
+import {StorageService} from '../../storage.service';
 
 @Component({
   selector: 'app-stock-details',
@@ -17,7 +18,8 @@ export class StockDetailsComponent implements OnInit {
   quoteData: QuoteData | undefined;
 
   constructor(private storageService: StorageService,
-              private stockDetailsService: StockDetailsService) {
+              private stockDetailsService: StockDetailsService,
+              private router: Router) {
   }
 
   ngOnInit(): void {
@@ -31,5 +33,12 @@ export class StockDetailsComponent implements OnInit {
 
   onRemove() {
     this.storageService.removeSymbol(this.symbol);
+  }
+
+  goToSentiment() {
+    this.router.navigate(['/sentiment', this.symbol], {state: {
+      symbol: this.symbol,
+      companyName: this.companyName
+    }});
   }
 }

@@ -1,0 +1,7 @@
+.arrow {
+  font-size: 32px;
+  width: 80px;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}

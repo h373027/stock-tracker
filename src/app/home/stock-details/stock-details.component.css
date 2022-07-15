@@ -1,6 +1,6 @@
 .container {
   position: relative;
-  width: 80%;
+  width: 600px;
   border: 2px solid black;
   border-radius: 4px;
   margin: 20px auto;
@@ -18,16 +18,22 @@ h3 {
   margin-block-start: 0;
 }
 
-.remove-button {
+.remove {
   cursor: pointer;
   padding: 4px;
 }
 
-.quote-data {
+.numbers {
   display:grid;
   grid-template-columns: 200px 200px;
   grid-column-gap: 20px;
   grid-row-gap: 20px;
 }
 
+.content {
+  display: flex;
+}
 
+.footer {
+  margin-top: 20px;
+}

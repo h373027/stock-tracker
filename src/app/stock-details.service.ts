@@ -3,6 +3,7 @@ import {Injectable} from '@angular/core';
 import {map, Observable} from 'rxjs';
 
 import {QuoteData} from './quote-data';
+import {MonthlySentimentData, SentimentData} from './sentiment-data';
 
 interface SymbolLookupResponse {
   // Number of results
@@ -41,6 +42,25 @@ interface QuoteResponse {
   t: number
 }
 
+interface SentimentDataResponse {
+  // Symbol.
+  symbol: string,
+  // Year.
+  year: number,
+  // Month.
+  month: number,
+  // Net buying/selling from all insiders' transactions.
+  change: number,
+  // Monthly share purchase ratio.
+  mspr: number
+}
+
+interface SentimentResponse {
+  // Array of sentiment data.
+  data: SentimentDataResponse[],
+  // Symbol of the company.
+  symbol: string
+}
 
 @Injectable({
   providedIn: 'root'
@@ -87,5 +107,42 @@ export class StockDetailsService {
   getQuoteDataModel(symbol: string): Observable<QuoteData> {
     return this.getQuoteData(symbol)
       .pipe(map(quoteData => this.convertQuoteData(symbol, quoteData)));
+  }
+
+  private getInsiderSentiment(symbol: string): Observable<SentimentResponse> {
+    const toDate = new Date();
+    const fromDate = new Date();
+    fromDate.setMonth(fromDate.getMonth() - 3);
+
+    const url = this.baseUrl + 'stock/insider-sentiment';
+    const params = new HttpParams()
+      .set('symbol', symbol)
+      .set('from', StockDetailsService.dateToString(fromDate))
+      .set('to', StockDetailsService.dateToString(toDate))
+      .set('token', this.apiKey);
+    return this.http.get<SentimentResponse>(url, {params});
+  }
+
+  private convertSentimentData(sentimentResponse: SentimentResponse): SentimentData {
+    const today = new Date();
+    const data: MonthlySentimentData[] = sentimentResponse.data.map(element => {
+      return {
+        month: new Date(today.setMonth(element.month)).toLocaleString('default', { month: 'long' }),
+        change: element.change,
+        mspr: element.mspr
+      }
+    });
+    return {
+      symbol: sentimentResponse.symbol,
+      data: data
+    };
+  }
+
+  private static dateToString(date: Date): string {
+    return date.toISOString().split('T')[0];
+  }
+
+  getSentimentData(symbol: string): Observable<SentimentData> {
+    return this.getInsiderSentiment(symbol).pipe(map(result => this.convertSentimentData(result)));
   }
 }

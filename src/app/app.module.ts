@@ -10,6 +10,8 @@ import {SearchComponent} from './home/search/search.component';
 import {StockDetailsComponent} from './home/stock-details/stock-details.component';
 import {SentimentComponent} from './sentiment/sentiment.component';
 import { StocksListComponent } from './home/stocks-list/stocks-list.component';
+import { MonthlySentimentComponent } from './sentiment/monthly-sentiment/monthly-sentiment.component';
+import { ArrowComponent } from './shared/arrow/arrow.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +20,9 @@ import { StocksListComponent } from './home/stocks-list/stocks-list.component';
     SearchComponent,
     StockDetailsComponent,
     SentimentComponent,
-    StocksListComponent
+    StocksListComponent,
+    MonthlySentimentComponent,
+    ArrowComponent
   ],
   imports: [
     BrowserModule,
