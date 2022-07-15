@@ -1,6 +1,6 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
 import {Subscription} from 'rxjs';
-import {StorageService} from '../../storage.service';
+import {StorageService} from '../../services/storage.service';
 
 @Component({
   selector: 'app-stocks-list',

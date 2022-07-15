@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {StorageService} from '../../storage.service';
+import {StorageService} from '../../services/storage.service';
 
 interface SearchFilter {
   symbol: string;

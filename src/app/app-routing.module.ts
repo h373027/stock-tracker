@@ -6,7 +6,8 @@ import {SentimentComponent} from './sentiment/sentiment.component';
 
 const routes: Routes = [
   {path: '', component: HomeComponent, pathMatch: 'full'},
-  {path: 'sentiment/:symbol', component: SentimentComponent}
+  {path: 'sentiment/:symbol', component: SentimentComponent},
+  {path: '**', component: HomeComponent} // future improvement: not found page component
 ];
 
 @NgModule({

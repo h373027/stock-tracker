@@ -12,7 +12,7 @@ export class StorageService {
   }
 
   getSymbolsList(): string[] {
-    let listAsString = localStorage.getItem(this.key);
+    const listAsString = localStorage.getItem(this.key);
     if (listAsString) {
       return JSON.parse(listAsString);
     }

@@ -1,8 +1,8 @@
 import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
 import {first} from 'rxjs';
-import {StockDetailsService} from '../stock-details.service';
-import {SentimentData} from '../sentiment-data';
+import {StockDetailsService} from '../services/stock-details.service';
+import {SentimentData} from '../models/sentiment-data';
 
 @Component({
   selector: 'app-sentiment',

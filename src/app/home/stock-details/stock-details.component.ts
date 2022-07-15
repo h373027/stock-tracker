@@ -2,9 +2,9 @@ import {Component, Input, OnInit} from '@angular/core';
 import {Router} from '@angular/router';
 import {first} from 'rxjs';
 
-import {QuoteData} from '../../quote-data';
-import {StockDetailsService} from '../../stock-details.service';
-import {StorageService} from '../../storage.service';
+import {QuoteData} from '../../models/quote-data';
+import {StockDetailsService} from '../../services/stock-details.service';
+import {StorageService} from '../../services/storage.service';
 
 @Component({
   selector: 'app-stock-details',
