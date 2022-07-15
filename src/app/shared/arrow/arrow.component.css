@@ -5,3 +5,13 @@
   justify-content: space-around;
   align-items: center;
 }
+
+.up::after {
+  color: green;
+  content: '\1F845';
+}
+
+.down::after {
+  color: red;
+  content: '\1F847';
+}
