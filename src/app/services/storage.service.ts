@@ -32,6 +32,9 @@ export class StorageService {
       return;
     }
     const list = this.getSymbolsList();
+    if (list.indexOf(symbol) > -1) {
+      return;
+    }
     list.push(symbol.toUpperCase());
     this.setSymbolsList(list);
     this.symbolsListChanged.emit(list);
@@ -42,7 +45,7 @@ export class StorageService {
       return;
     }
     const list = this.getSymbolsList();
-    const index = list.indexOf(symbol, 0);
+    const index = list.indexOf(symbol);
     if (index > -1) {
       list.splice(index, 1);
     }
