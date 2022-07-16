@@ -11,8 +11,8 @@ import {StockDetailsComponent} from './home/stock-details/stock-details.componen
 import {SentimentComponent} from './sentiment/sentiment.component';
 import { StocksListComponent } from './home/stocks-list/stocks-list.component';
 import { MonthlySentimentComponent } from './sentiment/monthly-sentiment/monthly-sentiment.component';
-import { ArrowComponent } from './shared/arrow/arrow.component';
-import { CardComponent } from './shared/card/card.component';
+import { ArrowComponent } from './shared-components/arrow/arrow.component';
+import { CardComponent } from './shared-components/card/card.component';
 
 @NgModule({
   declarations: [
