@@ -1,13 +1,8 @@
-<div class="container">
-  <div class="header">
-    <h3 class="title">{{companyName}} ({{symbol}})</h3>
-  </div>
-  <div class="content" *ngIf="sentimentData">
-    <div *ngFor="let monthlySentiment of sentimentData?.data">
+<app-card [symbol]="symbol" [companyName]="companyName" [data]="!!sentimentData">
+    <div content *ngFor="let monthlySentiment of sentimentData?.data">
       <app-monthly-sentiment [monthlySentimentData]="monthlySentiment"></app-monthly-sentiment>
     </div>
-  </div>
-</div>
+</app-card>
 
 <div class="navigation-back">
   <button (click)="goToStockList()">< Back to list of stocks</button>

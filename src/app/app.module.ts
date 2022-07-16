@@ -12,6 +12,7 @@ import {SentimentComponent} from './sentiment/sentiment.component';
 import { StocksListComponent } from './home/stocks-list/stocks-list.component';
 import { MonthlySentimentComponent } from './sentiment/monthly-sentiment/monthly-sentiment.component';
 import { ArrowComponent } from './shared/arrow/arrow.component';
+import { CardComponent } from './shared/card/card.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { ArrowComponent } from './shared/arrow/arrow.component';
     SentimentComponent,
     StocksListComponent,
     MonthlySentimentComponent,
-    ArrowComponent
+    ArrowComponent,
+    CardComponent
   ],
   imports: [
     BrowserModule,
